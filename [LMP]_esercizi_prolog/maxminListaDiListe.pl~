@@ -1,0 +1,39 @@
+
+
+minimo([E], E).
+
+minimo([H|Resto], H):-
+    minimo(Resto, Min),
+    H < Min.
+
+minimo([H|Resto], Min):-
+    minimo(Resto, Min),
+    H >= Min.
+
+
+minimoInListaDiListe([], H).
+
+minimoInListaDiListe([H|_], Min):-
+    minimo(H, MinP),
+    Min >= MinP.
+
+minimoInListaDiListe([_|Resto], Min):-
+    minimoInListaDiListe(Resto, Min).
+
+minimoInListaDiListe3([H|_], Min):-
+    minimo(H, MinP),
+    Min >= MinP.
+
+minimoInListaDiListe3([_|Resto], Min):-
+    minimoInListaDiListe3(Resto, Min).
+
+
+massimo([E], E).
+
+massimo([H|Resto], H):-
+    massimo(Resto, Max),
+    H > Max.
+
+massimo([H|Resto], Max):-
+    massimo(Resto, Max),
+    H =< Max.

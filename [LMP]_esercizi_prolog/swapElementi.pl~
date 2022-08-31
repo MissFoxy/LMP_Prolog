@@ -1,0 +1,120 @@
+%%%DA FINIRE
+
+% inverte due elementi E1 e E2 (il primo E1 e l'ultimo E2 disponibili)
+swap(E1, E2, ListaIniziale, ListaFinale):-
+    %nth1(X2, ListaIniziale, E1),
+    %nth1(X1, ListaFinale, E2),
+    select(E1, ListaIniziale, E2, ListaFinaleP),
+    reverse(ListaFinaleP, ListaFinalePR),
+    select(E2, ListaFinalePR, E1, ListaFinaleR),
+    reverse(ListaFinaleR, ListaFinale).
+
+
+
+/*
+
+swapAppend(E1, E2, ListaIniziale, ListaFinale, E1, E2):-
+    scorriCercandoE(E1, ListaIniziale, E2, ListaFinaleE2).
+    %scorriCercandoE(E2, ListaIniziale, E1, ListaFinale
+
+
+
+scorriCercandoE(E1, [H|RestoIniziale], E2, _):-
+    E1 \= H,
+    scorriCercandoE(E1, RestoIniziale, E2, _).
+
+scorriCercandoE(E1, [E1|RestoIniziale], E2, [E2|RestoIniziale]).
+
+*/
+
+                     /*
+scorriC(_,[],_, []).
+
+scorriC(E1,[H1|RestoListaIniziale], E2, ListaFinaleP):-
+    E1 \= H1,
+    scorriC(E1,RestoListaIniziale, E2, ListaFinaleP).
+
+scorriC(E1, [E1|RestoListaIniziale], E2, ListaFinaleP):-
+    selectchk(E1, [E1|RestoListaIniziale], RestoListaIniziale),
+    append([E2], RestoListaIniziale, ListaFinaleP),
+    scorriC2(E1, RestoListaIniziale, E2, ListaFinaleP).
+
+
+scorriC2(_,[],_, []).
+
+scorriC2(E1, [H2|RestoListaIniziale], E2, ListaFinaleP):-
+    E2 \= H2,
+    scorriC2(E1, RestoListaIniziale, E2, ListaFinaleP).
+
+scorriC2(E1, [E1|RestoListaIniziale], E2, ListaFinaleP):-
+    selectchk(E1, [E2|RestoListaIniziale], RestoListaIniziale),
+    append([E1], RestoListaIniziale, ListaFinaleP),
+    scorriC2(E1, RestoListaIniziale, E2, ListaFinaleP).
+
+*/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+/*Tipo di input: scambio(g,[a,b,g,d,r,t],ListFin,r)*/
+/*CASO FINALE*/
+scambio(Var1,[Var2|Resto],[Var1|Resto],Var2):-
+    !.
+
+/*CASO INTERMEDIO*/
+scambio(Var1,[Head|Tail],[Head|Resto],Var2):-
+    Var1 \= Head,
+    Var2 \= Head,
+    scambio(Var1,Tail,Resto,Var2).
+
+/*CASO INIZIALE*/
+scambio(Var1,[Var1|Tail], [Var2|Resto],Var2):-
+    scambio(Var1,Tail,Resto,Var2).
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%NB nth1 fallisce se ha entrambe le liste istanziate
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+swapTesta([H1,H2|RESTO], [H2,H1|RESTO]).
+
+swapMult([H1,H2|RESTO1], [H3,H4|RESTO2], [H3,H4|RESTO1], [H1,H2|RESTO2]).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% NON FUNZIONA %%%%%
+% [a,b,c,d,e]
+swapConIndici(_,_,[],[],_,_).
+
+swapConIndici(E1, E2, ListaIniziale, ListaFinale, X1, X2):-
+    %nth1(X1, ListaIniziale, E1), %controlla che gli indici siano giusti, non indispensabile
+    %nth1(X2, ListaIniziale, E2),
+    nth1(X1, ListaIniziale, E1, ListaFinaleSE1), %leva E1
+    X2N is X2 - 1,
+    nth1(X2N, ListaFinaleCE2, E1, ListaFinaleSE1), %mette E1 in posizione X2
+    nth1(X2, ListaFinaleCE2, E2, ListaFinaleSE2), %elimina E2 in X2
+    nth1(X1, ListaFinaleSE2, E2, ListaFinale). %mette E2 in X1

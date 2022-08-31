@@ -1,0 +1,29 @@
+
+
+% concatena
+concatena([], L,L).
+concatena([H|T], L, [H|T1]):-
+	concatena(T,L,T1).
+
+
+/*cerca elemento specifico e lo elimina */
+
+cercaElementoSpecifico([],[],_).
+
+cercaElementoSpecifico(ListaIniziale, ListaFinale, E):-
+    cercaES(ListaIniziale,ListaFinale, E).
+
+cercaES(ListaIniziale, ListaFinale, H):-
+    member(H, ListaIniziale),
+    selectchk(H, ListaIniziale, ListaFinale).
+
+%cercaElementoSpecifico([1,2,3,4], LF, 2).    LF = [1, 3, 4] .
+
+cercaElementoSpecificoInListaDiListe([],[],0):-!.
+
+cercaElementoSpecificoInListaDiListe([Lista1|Resto], ListaFinaleP, E):-
+    cercaElementoSpecifico(Lista1, ListaFinaleCES, E),
+    concatena([ListaFinaleCES], ListaFinaleP, ListaFinale),
+    cercaElementoSpecificoInListaDiListe(Resto, ListaFinale,E).
+
+

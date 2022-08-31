@@ -1,0 +1,23 @@
+
+
+raddoppiaValori([],[]).
+
+raddoppiaValori([H1|RESTO], [H|RESTO]):-
+    raddoppiaValori(RESTO, RESTO),
+    H is H1 * 2.
+
+
+
+/* CON IL PREDICATO TRIPLICA VERRA' SCRITTA LA LISTA INIZIALE 3 VOLTE */
+
+triplica([],[]).
+
+triplica(L, LLL) :-
+    append([L], [L], Y),
+    append([L],Y, LLL).
+
+triplicazione([], []).
+
+triplicazione([H|T], LT):-
+    triplica(H,LT1),
+    triplicazione(T,LT).

@@ -1,0 +1,37 @@
+% scorre fino a che non incontra E, resistituisce la lista dopo E(compreso)
+
+scorri(E,[],[]).
+
+scorri(E, [H|LISTA], L):-
+    E \= H,
+    scorri(E, LISTA, L).
+
+scorri(E, [E|LISTA], LISTAP):-
+  scorriP(E, [E|LISTA], LISTAP).
+
+scorriP(E,[],[]).
+
+scorriP(_,[H|LISTA], LISTAP):-
+    append([H], LISTAN, LISTAP),
+    scorriP(_, LISTA, LISTAN).
+
+
+
+% scorre la lista finché non trova il primo E cercato e ne segna la
+% posizione
+
+cercaElemento(E, [], 0):-!.
+
+cercaElemento(E, [E|RESTO], Num):-
+    cercaElemento(E, RESTO, M),
+    Num is M + 1.
+
+cercaElemento(E, [H|RESTO],Num):-
+    E \= H,
+    cercaElemento(E,RESTO, M),
+    Num is M + 1.
+
+
+cerca(Elemento, Lista, Posizione):-
+    reverse(Lista, ListaR),
+    cercaElemento(Elemento, ListaR, Posizione).

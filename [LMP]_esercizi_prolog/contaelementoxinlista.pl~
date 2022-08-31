@@ -1,0 +1,19 @@
+%conta gli elementi uguali ad un elemento X 
+
+conta(_,[],0):-!.
+
+conta(X,[X|T],Lungh):-
+    conta(X,T,M),
+    Lungh is M+1.
+
+conta(X,[Y|T],L):-
+    X \= Y,
+    conta(X,T,L).
+
+
+
+/*
+conta(X,[A,B|_],1):-
+    X = A,
+    X \=B,!.
+*/

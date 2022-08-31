@@ -1,0 +1,80 @@
+
+/*conta i caratteri uguali consecutivi (funziona con una singola lista per volta) */
+
+conta(_,[],0):-!.
+
+conta(X,[X|T],Lungh):-
+    conta2(X,T,M),
+    Lungh is M+1.
+
+conta(X,[_|T],Lungh):-
+    conta(X,T,Lungh).
+
+conta2(_,[],0):-!.
+
+conta2(X,[X|T],Lungh):-
+    conta2(X,T,M),
+    Lungh is M + 1.
+
+conta2(X,[Y|_],0):-
+    X \= Y,!.
+
+
+
+
+/*conta i caratteri uguali consecutivi LUNGHEZZA MAX (funziona con una singola lista per volta) */
+
+contaMAX(E, [], 0):-!.
+
+contaMAX(E, ListaIniziale, LunghezzaMAX):-
+    contaMAX1(E, ListaIniziale, Lungh),
+    scorri(E, ListaIniziale, ListaFinaleP),
+    contaMAX(E, ListaFinaleP, LunghezzaMAX),
+    LunghezzaMAX > Lungh.
+
+contaMAX(E, ListaIniziale, LunghezzaMAX):-
+    contaMAX1(E, ListaIniziale, Lungh),
+    scorri(E, ListaIniziale, ListaFinaleP),
+    contaMAX(E, ListaFinaleP, LunghezzaMAX),
+    LunghezzaMAX =< Lungh.
+
+
+contaMAX1(_, [], 0):-!.
+
+contaMAX1(Elemento, [Elemento|RESTO], LunghezzaMAX):-
+    contaMAX2(Elemento, RESTO, LunghezzaMAXP),
+    LunghezzaMAX is LunghezzaMAXP + 1.
+
+
+contaMAX1(Elemento, [H|RESTO], LunghezzaMAX):-
+    Elemento \= H,
+    contaMAX1(Elemento, RESTO, LunghezzaMAX).
+
+
+contaMAX2(E, [], 0):-!.
+
+contaMAX2(Elemento,[Elemento|RESTO], LunghezzaMAX):-
+    contaMAX2(Elemento, RESTO, LunghezzaMAXP),
+    LunghezzaMAX is LunghezzaMAXP + 1.
+
+
+contaMAX2(Elemento,[H|RESTO], 0):-
+    Elemento \= H, !.
+
+
+% scorre fino a che non incontra E, resistituisce la lista dopo E(compreso)
+
+scorri(E,[],[]).
+
+scorri(E, [H|LISTA], L):-
+    E \= H,
+    scorri(E, LISTA, L).
+
+scorri(E, [E|LISTA], LISTAP):-
+  scorriP(E, [E|LISTA], LISTAP).
+
+scorriP(E,[],[]).
+
+scorriP(_,[H|LISTA], LISTAP):-
+    append([H], LISTAN, LISTAP),
+    scorriP(_, LISTA, LISTAN).

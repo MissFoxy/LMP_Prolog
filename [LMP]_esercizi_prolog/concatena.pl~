@@ -1,0 +1,5 @@
+
+% concatena
+concatena([], L,L).
+concatena([H|T], L, [H|T1]):-
+	concatena(T,L,T1).

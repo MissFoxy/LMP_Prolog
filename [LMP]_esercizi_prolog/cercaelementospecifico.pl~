@@ -1,0 +1,10 @@
+
+/*cerca elemento specifico e lo elimina */
+cercaElementoSpecifico(ListaIniziale, ListaFinale, E):-
+    cercaES(ListaIniziale,ListaFinale, E).
+
+cercaES(ListaIniziale, ListaFinale, H):-
+    member(H, ListaIniziale),
+    selectchk(H, ListaIniziale, ListaFinale).
+
+

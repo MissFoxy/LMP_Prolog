@@ -1,0 +1,35 @@
+% IN ORDINE CRESCENTE
+
+%sort(Set, Sorted)
+
+
+%crescente
+
+bubbleSortCresc(List, Sorted):-
+    swapC(List, List1),
+    !,
+    bubbleSortCresc(List1, Sorted).
+
+bubbleSortCresc(Sorted, Sorted).
+
+swapC([X,Y|Rest], [Y,X|Rest]):-
+    X @> Y.
+
+swapC([Z|Rest1], [Z|Rest2]):-
+    swapC(Rest1, Rest2).
+
+
+%decrescente
+
+bubbleSortDecr(List, Sorted):-
+    swapD(List, List1),
+    !,
+    bubbleSortDecr(List1, Sorted).
+
+bubbleSortDecr(Sorted, Sorted).
+
+swapD([X,Y|Rest], [Y,X|Rest]):-
+    X @< Y.
+
+swapD([Z|Rest1], [Z|Rest2]):-
+    swapD(Rest1, Rest2).

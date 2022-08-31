@@ -1,0 +1,65 @@
+
+bloccoDa10([_],[_]).
+bloccoDa10([],[]).
+
+bloccoDa10([H|Lista1], ListaFin):-
+    H2 is 10 - H,
+    member(H2, Lista1),
+    append([[H,H2]], ListaP, ListaFin),
+    selectchk(H2, Lista1, Lista1P),
+    bloccoDa10(Lista1P, ListaP).
+
+
+
+bloccoDa10([H|Lista1], ListaFin):-
+    H =:= 10,
+    append([[H]], ListaP, ListaFin),
+    selectchk(H, [H|Lista1], Lista1P),
+    bloccoDa10(Lista1P, ListaP).
+
+bloccoDa10([H1,H2, H3|Lista1], ListaFin):-
+    H1 + H2 + H3 =:= 10,
+    %last([[H1,H2, H3|Lista1]], [H1,H2, H3]),
+    append([[H1,H2, H3]], ListaP , ListaFin),
+    selectchk(H1, [H1,H2,H3|Lista1], Lista1P),
+    selectchk(H2, Lista1P, Lista2P),
+    selectchk(H3, Lista2P, Lista3P),
+    bloccoDa10(Lista3P, ListaP).
+
+bloccoDa10([H1,H2|Lista1], ListaFin):-
+    H1 + H2 < 10,
+    last([[H1,H2|Lista1]], [H1,H2]),
+    append([[H1,H2]], [], ListaFin).
+
+bloccoDa10([H1,H2, H3|Lista1], ListaFin):-
+    H1 + H2 + H3 < 10,
+    last([[H1,H2, H3|Lista1]], [H1,H2, H3]),
+    append([[H1,H2, H3]], [], ListaFin).
+    % XXX selectchk([H, Lista1, Lista1P),
+    %bloccoDa10(ListaFin, []).
+
+bloccoDa10([H1,H2,H3, H4|Lista1], ListaFin):-
+    H1 + H2 + H3 + H4 < 10,
+    last([[H1,H2, H3, H4|Lista1]], [H1,H2,H3, H4]),
+    append([[H1,H2, H3,H4]], [], ListaFin).
+
+bloccoDa10([H|Lista1], ListaFin):-
+    last([H|Lista1], H),
+    append([[H]], [], ListaFin).
+    %selectchk(H, Lista1, Lista1P),
+    %bloccoDa10(Lista1P, []).
+
+
+
+/* INPUT: bloccoDa10([8,2,10,9,1,3], LF).
+OUTPUT: LF = [[8, 2], [10], [9, 1], [3]] . */
+
+%restitusce la lista di "scarto" del predicato di prima
+partizioneInBlocchiDa10Min(ListaIniziale, ListaPartizionata):-
+    bloccoDa10(ListaIniziale, ListaFinale),
+    reverse(ListaFinale, [ListaPartizionata| _]).
+
+/*
+INPUT: partizioneInBlocchiDa10Min([2,8,9,10,1,4,4], FP).
+OUTPUT: FP = [4, 4]
+*/

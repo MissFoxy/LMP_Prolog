@@ -1,0 +1,23 @@
+
+
+conta(_,[],0):-!.
+
+conta(X,[X|T],Lungh):-
+    conta(X,T,M),
+    Lungh is M+1.
+
+conta(X,[A,B|_],1):-
+    X = A,
+    X \=B,!.
+
+conta(X,[Y|T],L):-
+    X \= Y,
+    conta(X,T,L).
+
+%lunghezza gli va inserito
+contaCaratteriUgualiConsecutiviInListaDiListe(A,Lunghezza,[L|_]):-
+    conta(A,L,Lunghezza),
+    Lunghezza =\= 0,!.
+
+contaCaratteriUgualiConsecutiviInListaDiListe(A,Lunghezza,[_|T]):-
+    contaCaratteriUgualiConsecutiviInListaDiListe(A,Lunghezza,T).

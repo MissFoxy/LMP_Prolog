@@ -1,0 +1,41 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/*estrai Elemento E dato in una specifica posizione. NB: non funziona dando E e non la posizione
+estraiElemento(E,[s,d,f,a,s,d,g,h], 2).
+E = d.
+*/
+estraiElemento(E, Lista, Posizione):-
+    PosizioneNTH is Posizione - 1,
+    nth0(PosizioneNTH, Lista, E).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/*estrae l'elemento al centro della lista*/
+estraiAlCentro(E, Lista):-
+    contaNumElementiInLista(Lista, Num),
+    Posizione is Num // 2,
+    PosizioneC is Posizione + 1,
+    estraiElemento(E, Lista, PosizioneC).
+
+contaNumElementiInLista([], 0).
+
+contaNumElementiInLista([H|Lista], Num):-
+    contaNumElementiInLista(Lista, NumP),
+    Num is NumP + 1.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/*penultimo elemento*/
+penultimo([H,L|[]], H).
+penultimo([H|T],L):-
+	penultimo(T,L).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/* restituisce l'ultimo elemento della lista */
+ultimoElemento(E, Lista):-
+    last(Lista, E).
+
+/*restituire l'ultimo elemento della lista*/
+
+ultimo([X],X).
+ultimo([_|T],L):-
+	ultimo(T,L).
+
+

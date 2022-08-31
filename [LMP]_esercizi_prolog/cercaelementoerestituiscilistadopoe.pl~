@@ -1,0 +1,42 @@
+
+
+
+% scorre fino a che non incontra E, resistituisce la lista dopo E(compreso)
+
+scorri(E,[],[]).
+
+scorri(E, [H|LISTA], L):-
+    E \= H,
+    scorri(E, LISTA, L).
+
+scorri(E, [E|LISTA], LISTAP):-
+  scorriP([E|LISTA], LISTAP).
+
+
+scorriP([],[]).
+
+scorriP([H|LISTA], LISTAP):-
+    append([H], LISTAN, LISTAP),
+    scorriP(LISTA, LISTAN).
+
+
+
+
+
+% scorre fino a che non incontra E, resistituisce la lista dopoE(escluso)
+
+scorriEscludendo(E,[],[]).
+
+scorriEscludendo(E, [H|LISTA], L):-
+    E \= H,
+    scorriEscludendo(E, LISTA, L).
+
+scorriEscludendo(E, [E|LISTA], LISTAP):-
+  scorriEscludendoP(LISTA, LISTAP).
+
+
+scorriEscludendoP([],[]).
+
+scorriEscludendoP([H|LISTA], LISTAP):-
+    append([H], LISTAN, LISTAP),
+    scorriEscludendoP(LISTA, LISTAN).

@@ -1,0 +1,2 @@
+
+eliminaPrimoElemento([_|RESTO], RESTO).

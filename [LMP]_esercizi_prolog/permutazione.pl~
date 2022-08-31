@@ -1,0 +1,19 @@
+
+
+permutazione(Lista, ListaPermutata):-
+    random_member(E,Lista),
+    select(E, Lista, ListaFinaleP),
+    append(ListaFinaleP, [E], ListaPermutata).
+
+
+
+
+
+permutazione2(Lista, ListaPermutata):-
+    random_member(E,Lista),
+    select(E, Lista, ListaFinaleP1),
+    random_member(H,ListaFinaleP1),
+    select(H, ListaFinaleP1, ListaFinaleP2),
+    append(ListaFinaleP2, [E,H], ListaPermutata).
+
+

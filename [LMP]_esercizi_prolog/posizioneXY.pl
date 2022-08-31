@@ -1,0 +1,38 @@
+
+
+
+
+cercaElemento(_, [], 0, []):-!.
+
+cercaElemento(E, [E|RESTO], Num, ListaPosizioni):-
+    cercaElemento(E, RESTO, M, ListaPosizioniP),
+    Num is M + 1,
+    append(ListaPosizioniP, [Num], ListaPosizioni).
+
+
+cercaElemento(E, [H|RESTO], Num, ListaPosizioni):-
+    E \= H,
+    cercaElemento(E,RESTO, M, ListaPosizioni),
+    Num is M + 1.
+
+
+cerca(Elemento, Lista, ListaPosizioni):-
+    reverse(Lista, ListaR),
+    cercaElemento(Elemento, ListaR, _, ListaPosizioni).
+
+
+
+
+posizioneXY(E, Lista, ListaCoordinate):-
+    posizione(E, Lista, ListaCoordinate, 1).
+
+
+posizione(_, [], [], X):-!.
+
+
+posizione(E, [Lista|Resto],[[XPrec,Testa]|RestoListaCoor], XPrec):-
+    cerca(E,Lista,Testa),
+    XNew is XPrec + 1,
+    posizione(E,Resto,RestoListaCoor,XNew).
+
+

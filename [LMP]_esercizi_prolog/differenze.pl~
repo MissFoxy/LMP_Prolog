@@ -1,0 +1,12 @@
+
+diff([],[],[]).
+
+diff([H|Resto1], Lista2, Lista3):-
+    not(member(H, Lista2)),
+    append([H], Lista2P, Lista3),
+    diff(Resto1, Lista2, Lista2P).
+
+diff([H|Resto1], Lista2, Lista3):-
+    member(H, Lista2),
+    diff(Resto1, Lista2, Lista3).
+
