@@ -1,1 +1,3 @@
-# LMP_Prolog
+# Raccolta esercizi Prolog
+Esercizi inventati e svolti in Prolog da **Giulia Pascale** per il corso LMP (Linguaggi e Metodologie di programmazione) dell'Università di Roma "Tor Vergata" nell'AA 2018-2019.
+**Non** sono stati revisionati.
